@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="Board">
+	
+	<!-- 공지사항 등록 -->
+	<insert id="noticeInsert" parameterType="noticeVO">
+		insert into notice (notice_title,notice_content,notice_type)
+          values(#{notice_title},#{notice_content},#{notice_type})
+	</insert>
+	
+</mapper>

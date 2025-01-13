@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<!-- 전체 패키지 경로	 -->
+	<properties resource="kr/or/ddit/mybatis/config/dbinfo.properties" />
+	
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="VO.noticeVO" alias="noticeVO"/>
+	</typeAliases>
+	
+	<environments default="oracleDB">
+		<environment id="oracleDB">
+			<transactionManager type="JDBC" />
+			
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="pass" value="${pass}"/>
+			</dataSource>
+		</environment>
+	</environments>
+		
+		<mappers>
+			<mapper resource="kr.or.ddit.mybatis.mappers/Board-mapper.xml"/>
+		</mappers>
+</configuration>
