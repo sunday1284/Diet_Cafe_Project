@@ -73,6 +73,13 @@
     <artifactId>mybatis</artifactId>
     <version>3.5.14</version>
 	</dependency>
+		<!--	  log4J 추가-->
+	
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version> <!-- 또는 사용하고자 하는 버전 -->
+</dependency>
 	
 
 	

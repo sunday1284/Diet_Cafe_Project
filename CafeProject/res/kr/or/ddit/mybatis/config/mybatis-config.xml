@@ -3,7 +3,7 @@
 
 <configuration>
 	<!-- 전체 패키지 경로	 -->
-	<properties resource="kr/or/ddit/mybatis/config/dbinfo.properties" />
+	<properties resource="/kr/or/ddit/mybatis/config/dbinfo.properties" />
 	
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
