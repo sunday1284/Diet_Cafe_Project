@@ -8,4 +8,8 @@
           values(NOTICE_SEQ.NEXTVAL, #{notice_title}, #{notice_content}, #{notice_type})
 	</insert>
 	
+	<select id="getAllNotice" resultType="noticeVO">
+		select * from notice
+	</select>
+	
 </mapper>

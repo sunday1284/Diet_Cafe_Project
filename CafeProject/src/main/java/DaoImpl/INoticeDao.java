@@ -1,5 +1,7 @@
 package DaoImpl;
 
+import java.util.List;
+
 import VO.noticeVO;
 
 public interface INoticeDao {
@@ -10,5 +12,11 @@ public interface INoticeDao {
 	 * @return
 	 */
 	public int insertNotice(noticeVO noticeVO);
+	
+	/**
+	 * 공지사항 조회
+	 * @param noticeVO
+	 */
+	public List<noticeVO> getAllNotice();
 	
 }

@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Notice;
 
 import java.io.IOException;
 
@@ -15,11 +15,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/notice.do")
-public class NoticeServlet extends HttpServlet{
+public class NoticeInsertServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path ="/WEB-INF/notice.jsp";
+		String path ="/WEB-INF/Notice/notice.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 	@Override
@@ -52,7 +52,7 @@ public class NoticeServlet extends HttpServlet{
 		
 		
 		if(cnt >0) {
-			String path="/WEB-INF/notice.jsp";
+			String path="/WEB-INF/Notice/notice.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "등록에 실패하였습니다.");

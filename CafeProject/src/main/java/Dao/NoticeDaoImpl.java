@@ -1,5 +1,7 @@
 package Dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import DaoImpl.INoticeDao;
@@ -33,6 +35,27 @@ public class NoticeDaoImpl implements INoticeDao {
 			if(session != null) session.close();
 		}
 		return cnt;
+	}
+
+	@Override
+	public List<noticeVO> getAllNotice() {
+		SqlSession session = MybatisUtil.getSqlSession();
+		
+		List<noticeVO>noticeList = null;
+		
+		try {
+		
+			noticeList = session.selectList("Board.getAllNotice");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("공지조회 실패");
+		} finally {
+			if(session != null) session.close();
+		}
+		
+		return noticeList;
+		
 	}
 
 	

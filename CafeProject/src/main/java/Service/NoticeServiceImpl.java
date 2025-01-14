@@ -1,5 +1,7 @@
 package Service;
 
+import java.util.List;
+
 import Dao.NoticeDaoImpl;
 import DaoImpl.INoticeDao;
 import ServiceImpl.INoticeService;
@@ -26,5 +28,15 @@ public class NoticeServiceImpl implements INoticeService{
 		// TODO Auto-generated method stub
 		return dao.insertNotice(noticeVO);
 	}
+
+	@Override
+	public List<noticeVO> getAllNotice() {
+		// TODO Auto-generated method stub
+		return dao.getAllNotice();
+	}
+
+
+	
+	
 
 }
