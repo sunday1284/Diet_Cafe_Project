@@ -7,6 +7,7 @@ public class noticeVO {
 	private String notice_content;
 	private String notice_type;
 	private int notice_view;
+	
 	public String getNotice_no() {
 		return notice_no;
 	}

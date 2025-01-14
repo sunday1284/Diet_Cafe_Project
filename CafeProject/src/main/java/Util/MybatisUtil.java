@@ -26,6 +26,7 @@ private static SqlSessionFactory factory;
 			factory = new SqlSessionFactoryBuilder().build(rd);
 			
 		} catch (Exception e) {
+			System.out.println(rd);
 			System.out.println("MyBatis 초기화 실패!!!");
 			e.printStackTrace();
 		} finally {
