@@ -58,7 +58,9 @@ public class NoticeServlet extends HttpServlet{
 			resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "등록에 실패하였습니다.");
 		}
 		
-		
+		req.setAttribute("notice_title", notice_title);
+		req.setAttribute("notice_content", notice_content);
+		req.setAttribute("notice_type", notice_type);
 		
 		
 	}
