@@ -3,7 +3,7 @@
 <mapper namespace="Member">
 	<!-- 회원가입 -->
 	<insert id="joinMember" parameterType="memVO">
-		insert into member(mem_id, mem_name, mem_pw, mem_bir, 
+		insert into MEMBER(mem_id, mem_name, mem_pw, mem_bir, 
  		mem_tel, mem_addr1, mem_addr2, mem_create)
  		values(#{mem_id},#{mem_name},#{mem_pw},sysdate,
  			   #{mem_tel},#{mem_addr1},#{mem_addr2},sysdate)

@@ -20,7 +20,6 @@ private static SqlSessionFactory factory;
 		try {
 			// 1-1. 환경 설정 파일을 읽어올 스트림 객체를 생성한다.
 			rd = Resources.getResourceAsReader("kr/or/ddit/mybatis/config/mybatis-config.xml");
-			
 			// 1-2 환경 설정 파일을 읽어와 환경 설정을 진행하고 환경 설정이 완료되면
 			//		SqlSessionFactory 객체가 생성된다.
 			factory = new SqlSessionFactoryBuilder().build(rd);
