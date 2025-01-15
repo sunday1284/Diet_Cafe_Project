@@ -58,7 +58,7 @@ public class JoinServlet extends HttpServlet {
 	    int cnt = service.joinMember(memvo);
 	    
 	    if (cnt > 0) {
-	        resp.sendRedirect(req.getContextPath() + "/success.jsp"); // 성공 시 이동할 페이지
+	        resp.sendRedirect(req.getContextPath() + "/Login.do"); // 성공 시 이동할 페이지 -> 로그인 화면으로 이동
 	    } else {
 	        req.getRequestDispatcher("/WEB-INF/JoinLogin/join.jsp").forward(req, resp);
 	    }
