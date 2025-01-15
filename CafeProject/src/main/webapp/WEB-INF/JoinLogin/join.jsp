@@ -11,7 +11,12 @@
 
 <form action="<%=request.getContextPath()%>/join.do" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return validateForm()">
 <ul>
-    <li>아이디 : <input type="text" name="mem_id" required minlength="4" maxlength="20" pattern="^[a-zA-Z0-9]{4,20}$" placeholder="아이디를 입력하세요!"></li>
+    <li>
+    	아이디 : 
+    	<input type="text" id="mem_id" name="mem_id" required minlength="4" maxlength="20" pattern="^[a-zA-Z0-9]{4,20}$" placeholder="아이디를 입력하세요!">
+    	<button type="button" id="checkIdBtn">중복 체크</button>
+    	<span id="idCheckResult" style="margin-left: 10px; color: red;"></span>
+    </li>
     <li>비밀번호 : <input type="password" name="mem_pw" required minlength="8" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])[A-Za-z0-9!@#\$%\^&\*]{8,}$" placeholder="비밀번호를 입력하세요!"></li>
     <li>이름 : <input type="text" name="mem_name" required placeholder="이름 입력"></li>
     <li>생일 : <input type="date" name="mem_bir" placeholder="생일 입력"></li>
@@ -28,8 +33,41 @@
     </li>
 </ul>
 </form>
+<script src="<%=request.getContextPath()%>/resource/js/jquery-3.7.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+//id 중복체크 비동기
+// ID 중복 체크 버튼 클릭 이벤트
+document.getElementById("checkIdBtn").addEventListener("click", function() {
+    const memId = document.getElementById("mem_id").value;
+    const idCheckResult = document.getElementById("idCheckResult");
+
+    if (memId.trim() === "") {
+        idCheckResult.style.color = "red";
+        idCheckResult.textContent = "아이디를 입력해주세요.";
+        return;
+    }
+
+    // Ajax 요청
+    $.ajax({
+        url: "<%=request.getContextPath()%>/CheckId.do", // 중복 체크를 위한 서버 엔드포인트
+        type: "POST",
+        data: { mem_id: memId },
+        success: function(response) {
+            if (response == "duplicate") {
+                idCheckResult.style.color = "red";
+                idCheckResult.textContent = "중복된 아이디입니다.";
+            } else {
+                idCheckResult.style.color = "green";
+                idCheckResult.textContent = "사용 가능한 아이디입니다.";
+            }
+        },
+        error: function() {
+            idCheckResult.style.color = "red";
+            idCheckResult.textContent = "중복 체크 중 오류가 발생했습니다.";
+        }
+    });
+});
  // 현재 날짜를 'mem_create' 필드에 설정하는 함수 
  window.onload = function() { 
      var today = new Date(); 

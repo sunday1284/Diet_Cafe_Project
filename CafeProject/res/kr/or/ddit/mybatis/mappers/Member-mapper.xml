@@ -8,4 +8,10 @@
  		values(#{mem_id},#{mem_name},#{mem_pw},sysdate,
  			   #{mem_tel},#{mem_addr1},#{mem_addr2},sysdate)
 	</insert>
+	<!-- ID 중복 체크 -->
+    <select id="checkId" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM MEMBER
+        WHERE mem_id = #{mem_id}
+    </select>
 </mapper>
