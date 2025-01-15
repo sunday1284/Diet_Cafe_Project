@@ -14,6 +14,7 @@
 
 	<typeAliases>
 		<typeAlias type="VO.noticeVO" alias="noticeVO"/>
+		<typeAlias type="VO.MemVO" alias="memVO"/>
 	</typeAliases>
 	
 	<environments default="oracleDB">
@@ -28,8 +29,8 @@
 			</dataSource>
 		</environment>
 	</environments>
-		
 		<mappers>
 			<mapper resource="kr/or/ddit/mybatis/mappers/Board-mapper.xml"/>
+			<mapper resource="kr/or/ddit/mybatis/mappers/Member-mapper.xml"/>
 		</mappers>
 </configuration>
