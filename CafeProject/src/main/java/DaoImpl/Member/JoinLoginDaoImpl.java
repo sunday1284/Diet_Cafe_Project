@@ -21,6 +21,9 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		
 	}
 	
+	/**
+	 * 회원가입
+	 */
 	@Override
 	public int joinMember(MemVO memvo) {
 		int cnt = 0;
@@ -39,6 +42,25 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		
 		
 		return cnt;
+	}
+	/**
+	 * id 중복체크
+	 */
+	@Override
+	public int CheckId(String mem_id) {
+		int cnt = 0;
+		SqlSession session = null;
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.selectOne("Member.checkId", mem_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (session != null)
+			session.close();
+		}
+		return cnt;
+		
 	}
 	
 }

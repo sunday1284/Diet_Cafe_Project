@@ -10,5 +10,10 @@ public interface IJoinLoginDao {
 	 * @return
 	 */
 	public int joinMember(MemVO memvo);
+
+	/**
+	 * id 중복체크
+	 */
+	int CheckId(String mem_id);
 	
 }
