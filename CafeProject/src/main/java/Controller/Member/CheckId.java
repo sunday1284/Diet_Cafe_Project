@@ -10,6 +10,10 @@ import java.io.IOException;
 import ServiceImpl.Member.JoinLoginServiceImpl;
 
 
+
+/**
+ * Id중복체크 서블릿 
+ */
 @WebServlet("/CheckId.do")
 public class CheckId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
