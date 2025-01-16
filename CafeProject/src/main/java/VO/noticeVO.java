@@ -7,6 +7,29 @@ public class noticeVO {
 	private String notice_content;
 	private String notice_type;
 	private int notice_view;
+	private String notice_day;
+	private String ofile;
+	private String sfile;
+	
+	
+	public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getSfile() {
+		return sfile;
+	}
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
+	}
+	public String getNotice_day() {
+		return notice_day;
+	}
+	public void setNotice_day(String notice_day) {
+		this.notice_day = notice_day;
+	}
 	
 	public String getNotice_no() {
 		return notice_no;
@@ -41,8 +64,10 @@ public class noticeVO {
 	@Override
 	public String toString() {
 		return "noticeVO [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_content="
-				+ notice_content + ", notice_type=" + notice_type + ", notice_view=" + notice_view + "]";
+				+ notice_content + ", notice_type=" + notice_type + ", notice_view=" + notice_view + ", notice_day="
+				+ notice_day + ", ofile=" + ofile + ", sfile=" + sfile + "]";
 	}
+	
 	
 	
 	
