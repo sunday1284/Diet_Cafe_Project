@@ -83,5 +83,31 @@
       <version>21.5.0.0</version>
     </dependency>
     
+    	<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
+<dependency>
+    <groupId>servlets.com</groupId>
+    <artifactId>cos</artifactId>
+    <version>05Nov2002</version>
+</dependency>
+
+<dependency>
+  <groupId>taglibs</groupId>
+  <artifactId>standard</artifactId>
+  <version>1.1.2</version>
+</dependency>
+
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency>
+
+    
+	    
   </dependencies>
 </project>

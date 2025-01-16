@@ -4,8 +4,8 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="noticeInsert" parameterType="noticeVO">
-		insert into notice (notice_no,notice_title,notice_content,notice_type)
-          values(NOTICE_SEQ.NEXTVAL, #{notice_title}, #{notice_content}, #{notice_type})
+		insert into notice (notice_no,notice_title,notice_content,notice_type,ofile)
+          values(NOTICE_SEQ.NEXTVAL, #{notice_title},#{notice_content},#{notice_type},#{ofile})
 	</insert>
 	
 	<select id="getAllNotice" resultType="noticeVO">
