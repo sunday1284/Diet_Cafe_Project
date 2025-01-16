@@ -14,4 +14,11 @@
         FROM MEMBER
         WHERE mem_id = #{mem_id}
     </select>
+    
+    <!-- 로그인 -->
+    <select id="getLoginMember" parameterType="memVO" resultType="memVO">
+	    SELECT * FROM MEMBER
+	     WHERE mem_id = #{mem_id} AND mem_pw = #{mem_pw}
+	</select>
+
 </mapper>

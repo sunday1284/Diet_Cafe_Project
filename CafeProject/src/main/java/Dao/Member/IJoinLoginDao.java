@@ -1,5 +1,7 @@
 package Dao.Member;
 
+import java.util.Map;
+
 import VO.MemVO;
 
 public interface IJoinLoginDao {
@@ -14,6 +16,11 @@ public interface IJoinLoginDao {
 	/**
 	 * id 중복체크
 	 */
-	int CheckId(String mem_id);
+	public int CheckId(String mem_id);
+
+	/**
+	 * 로그인 
+	 */
+	public MemVO getLoginMember(Map<String, String> map);
 	
 }

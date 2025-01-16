@@ -1,5 +1,8 @@
 package DaoImpl.Member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import Dao.Member.IJoinLoginDao;
@@ -62,5 +65,25 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		return cnt;
 		
 	}
+	/**
+	 * 로그인 
+	 */
+	@Override
+	public MemVO getLoginMember(Map<String, String> map) {
+		SqlSession session = null;
+		MemVO loginmemVO = null;
+		try {
+			session = MybatisUtil.getSqlSession();
+			loginmemVO = session.selectOne("Member.getLoginMember", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null)
+				session.close();
+		}
+		return loginmemVO;
+	}
+		
+	
 	
 }
