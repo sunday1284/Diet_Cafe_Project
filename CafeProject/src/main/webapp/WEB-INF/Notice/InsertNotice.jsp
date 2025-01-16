@@ -20,10 +20,10 @@
 		<option label="게시글추천" value="게시글추천"/>	
 		<option label="이벤트" value="이벤트"/>
 	</select><br>
-		<h4>
-      <span>제목</span>
-      <span><input type="text" name="notice_title"></span>
-   </h4>
+<!-- 		<h4> -->
+<!--       <span>제목</span> -->
+<!--       <span><input type="text" name="notice_title"></span> -->
+<!--    </h4> -->
    <h4>
       <span>내용</span>
       <span><input type="text"  name="notice_content"></span>
