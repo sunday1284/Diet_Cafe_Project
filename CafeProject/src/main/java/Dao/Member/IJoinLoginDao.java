@@ -22,5 +22,6 @@ public interface IJoinLoginDao {
 	 * 로그인 
 	 */
 	public MemVO getLoginMember(Map<String, String> map);
+
 	
 }
