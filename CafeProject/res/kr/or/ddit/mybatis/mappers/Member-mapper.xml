@@ -27,6 +27,7 @@
       	 	   MEM_ADDR1, MEM_ADDR2, MEM_CREATE, MEM_GRD 
        		   from member WHERE mem_grd != 'ADMIN'
 	</select>
+	<!--회원 자신의 정보 보기   -->
 	<select id="getMemberById" resultType="memVO" parameterType="String">
 		SELECT mem_id, mem_pw, mem_name, mem_tel, mem_addr1, mem_addr2
 		FROM member
@@ -44,5 +45,9 @@
    	  WHERE mem_id = #{mem_id}
       	AND mem_grd != 'ADMIN'
 	</update>
-
+	<!-- 회원 삭제 -> 관리자일 때 회원 삭제랑 회원이 회원 탈퇴 기능-->
+	<delete id="deleteMember" parameterType="String">
+		delete from member
+		where mem_id = #{mem_id}
+	</delete>
 </mapper>

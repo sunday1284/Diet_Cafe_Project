@@ -47,4 +47,8 @@ public class JoinLoginServiceImpl implements IJoinLoginService {
 	public MemVO getMemberById(String memId) {
 		return dao.getMemberById(memId);
 	}
+	@Override
+	public int deleteMember(String mem_id) {
+		return dao.deleteMember(mem_id);
+	}
 }

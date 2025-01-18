@@ -54,6 +54,12 @@
 					<td><%= mem.getMem_addr2() %></td>
 					<td><%= mem.getMem_create() %></td>
 					<td><%= mem.getMem_grd() %></td>
+					<td>
+                        <form action="<%=request.getContextPath()%>/memDelete.do" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
+                            <input type="hidden" name="mem_id" value="<%= mem.getMem_id() %>">
+                            <input type="submit" value="삭제">
+                        </form>
+                    </td>
 				</tr>
 			<%
 				}

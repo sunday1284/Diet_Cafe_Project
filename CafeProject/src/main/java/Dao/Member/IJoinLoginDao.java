@@ -45,5 +45,12 @@ public interface IJoinLoginDao {
 	 */
 	public MemVO getMemberById(String memId);
 
+	/**
+	 * 회원 삭제
+	 * @param mem_id
+	 * @return
+	 */
+	public int deleteMember(String mem_id);
+
 	
 }

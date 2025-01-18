@@ -147,5 +147,26 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		return result;
 		
 	}
+	
+	@Override
+	public int deleteMember(String mem_id) {
+		SqlSession session = null;
+		int cnt = 0;
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.delete("Member.deleteMember", mem_id);
+			if(cnt>0)
+				session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 삭제 실패 오류~");
+		}finally {
+			if(session != null)
+				session.close();
+		}
+		
+		return cnt;
+		
+	}
 
 }
