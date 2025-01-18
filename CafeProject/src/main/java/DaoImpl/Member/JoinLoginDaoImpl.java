@@ -1,6 +1,7 @@
 package DaoImpl.Member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,20 +11,20 @@ import Util.MybatisUtil;
 import VO.MemVO;
 
 public class JoinLoginDaoImpl implements IJoinLoginDao {
-	
+
 	private static JoinLoginDaoImpl dao;
-	
+
 	private JoinLoginDaoImpl() {
-		
+
 	}
 
 	public static JoinLoginDaoImpl getInstance() {
-		if(dao == null) 
+		if (dao == null)
 			dao = new JoinLoginDaoImpl();
 		return dao;
-		
+
 	}
-	
+
 	/**
 	 * 회원가입
 	 */
@@ -34,18 +35,18 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		try {
 			session = MybatisUtil.getSqlSession();
 			cnt = session.insert("Member.joinMember", memvo);
-			if(cnt>0) 
+			if (cnt > 0)
 				session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (session != null)
-			session.close();
+				session.close();
 		}
-		
-		
+
 		return cnt;
 	}
+
 	/**
 	 * id 중복체크
 	 */
@@ -58,15 +59,16 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 			cnt = session.selectOne("Member.checkId", mem_id);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (session != null)
-			session.close();
+				session.close();
 		}
 		return cnt;
-		
+
 	}
+
 	/**
-	 * 로그인 
+	 * 로그인
 	 */
 	@Override
 	public MemVO getLoginMember(Map<String, String> map) {
@@ -78,12 +80,31 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(session != null)
+			if (session != null)
 				session.close();
 		}
 		return loginmemVO;
 	}
-		
 	
-	
+	/**
+	 * 회원 리스트 -> 운영자일 경우는 출력X
+	 */
+	@Override
+	public List<MemVO> getAllMember() {
+		SqlSession session = null;
+		List<MemVO> memList = null;
+		try {
+			session = MybatisUtil.getSqlSession();
+			memList = session.selectList("Member.getAllMember");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+
+		return memList;
+
+	}
+
 }

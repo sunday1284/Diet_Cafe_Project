@@ -41,8 +41,23 @@ public class Login extends HttpServlet {
         if (loginMemberVO != null) {
             // 세션에 로그인 할 회원 정보 저장
             session.setAttribute("loginMember", loginMemberVO);
+            
+            //운영자 조건 확인 
+            if("admin".equals(loginMemberVO.getMem_id())
+            	&& "운영자".equals(loginMemberVO.getMem_name())
+            	&& "ADMIN".equals(loginMemberVO.getMem_grd())) {
+            	
+            	//운영자 페이지
+            	resp.sendRedirect(req.getContextPath() + "/view/JoinLogin/AdminBoard.jsp");
+            	return;
+            } else {
+            	//운영자가 아닐때 
+            	resp.sendRedirect(req.getContextPath() + "/memList.do");
+            	return;
+            	
+            }
         } 
-        // 로그인 실패  리다이렉트
+        // 로그인  실패 -> 리다이렉트
         resp.sendRedirect(req.getContextPath() + "/view/JoinLogin/LoginForm.jsp");
     }
     

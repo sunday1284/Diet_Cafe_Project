@@ -1,5 +1,6 @@
 package Service.Member;
 
+import java.util.List;
 import java.util.Map;
 
 import VO.MemVO;
@@ -23,4 +24,10 @@ public interface IJoinLoginService {
 	 * @return
 	 */
 	public MemVO getLoginMember(Map<String, String> map);
+	
+	/**
+	 * 회원 리스트 -> 운영자일 경우는 출력X
+	 * @return
+	 */
+	public List<MemVO> getAllMember();
 }

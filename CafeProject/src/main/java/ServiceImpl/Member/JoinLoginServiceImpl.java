@@ -1,5 +1,6 @@
 package ServiceImpl.Member;
 
+import java.util.List;
 import java.util.Map;
 
 import Dao.Member.IJoinLoginDao;
@@ -33,5 +34,9 @@ public class JoinLoginServiceImpl implements IJoinLoginService {
 	public MemVO getLoginMember(Map<String, String> map) {
 		return dao.getLoginMember(map);
 		
+	}
+	@Override
+	public List<MemVO> getAllMember(){
+		return dao.getAllMember();	
 	}
 }

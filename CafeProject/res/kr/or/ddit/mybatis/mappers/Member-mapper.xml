@@ -20,5 +20,13 @@
 	    SELECT * FROM MEMBER
 	     WHERE mem_id = #{mem_id} AND mem_pw = #{mem_pw}
 	</select>
+	
+	<!-- 회원 리스트 -> 운영자일 경우는 출력X -->
+	<select id="getAllMember" resultType="memVO">
+		select MEM_ID, MEM_NAME, MEM_PW, MEM_BIR, MEM_TEL,
+      	 	   MEM_ADDR1, MEM_ADDR2, MEM_CREATE, MEM_GRD 
+       		   from member WHERE mem_grd != 'ADMIN'
+	</select>
+	
 
 </mapper>
