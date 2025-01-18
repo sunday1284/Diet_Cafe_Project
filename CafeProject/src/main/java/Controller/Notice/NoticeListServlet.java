@@ -21,10 +21,11 @@ public class NoticeListServlet extends HttpServlet{
 		
 		String notice_no = req.getParameter("notice_no");
 		
-		List<noticeVO>noticeList = service.getAllNotice();
+		List<noticeVO> noticeList = service.getAllNotice();
 		req.setAttribute("noticeList", noticeList);
 		
 		System.out.println("회원조회 서블릿:" + noticeList);
+		System.out.println("회원조회 notice_no:" + notice_no);
 		
 		
 		
