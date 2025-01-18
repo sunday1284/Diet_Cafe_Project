@@ -15,6 +15,7 @@
 	<typeAliases>
 		<typeAlias type="VO.noticeVO" alias="noticeVO"/>
 		<typeAlias type="VO.MemVO" alias="memVO"/>
+		<typeAlias type="VO.FoodVO" alias="foodVO"/>
 	</typeAliases>
 	
 	<environments default="oracleDB">
