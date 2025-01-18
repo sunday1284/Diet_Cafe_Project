@@ -33,10 +33,19 @@ public class NoticeInsertServlet extends HttpServlet {
 		String path ="/noticeList.do";
 
 		try {
-			String saveDirectory = getServletContext().getRealPath("/Upload");
-			String originalFileName = FileUtil.uploadFile(req, saveDirectory);
-			String saveFileName = FileUtil.renameFile(saveDirectory, originalFileName);
-			insertMyFile(req,originalFileName,saveFileName);
+			//getServletContext().getRealPath= Upload폴더의 절대경로 검색
+			String savefile = getServletContext().getRealPath("/Upload");
+			System.out.println(getServletContext().getRealPath("/Upload"));
+			System.out.println(getServletContext().getRealPath("/uploads"));
+			
+			//파일명이 20252424.jpg로 반환
+			String ofile = FileUtil.uploadFile(req, savefile);
+			System.out.println("ofile 값확인 == " + ofile);
+			String sfile = FileUtil.renameFile(savefile, ofile);
+			System.out.println("sfile 값확인 ==" + sfile);
+			
+			insertMyFile(req,ofile,sfile);
+			
 			resp.sendRedirect(req.getContextPath() + path);
 			
 		} catch (Exception e) {
@@ -50,13 +59,13 @@ public class NoticeInsertServlet extends HttpServlet {
 			String notice_title = req.getParameter("notice_title");
 			String notice_content = req.getParameter("notice_content");
 			String notice_type = req.getParameter("notice_type");
-//			String ofile = req.getParameter("ofile");
 			
 			noticeVO noticeVo = new noticeVO();
 			noticeVo.setNotice_title(notice_title);
+			noticeVo.setNotice_content(notice_content);
 			noticeVo.setNotice_type(notice_type);
-			noticeVo.setOfile(ofile);
-			noticeVo.setOfile(sfile);
+			noticeVo.setOfile(ofile); //원본파일저장 (흰둥이)
+			noticeVo.setSfile(sfile);
 			
 			INoticeService service = NoticeServiceImpl.getInstance();
 			System.out.println(noticeVo);

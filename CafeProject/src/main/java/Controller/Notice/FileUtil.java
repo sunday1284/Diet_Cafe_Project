@@ -16,15 +16,15 @@ public class FileUtil {
 	
 	public static String uploadFile(HttpServletRequest req, String sDirectory) throws ServletException, IOException {
 		
-		Part part = req.getPart("ofile");
+		Part part = req.getPart("ofile"); //클라이언트가 보낸 파일 데이터 가져옴
 		String partHeader = part.getHeader("content-disposition");
 		String[] phArr = partHeader.split("filename=");
-		String originFileName = phArr[1].trim().replace("\"","");
+		String ofile = phArr[1].trim().replace("\"",""); //원본 파일명 추출
 		
-		if(!originFileName.isEmpty()) {
-			part.write(sDirectory + File.separator + originFileName);
+		if(!ofile.isEmpty()) {
+			part.write(sDirectory + File.separator + ofile);
 		}
-		return originFileName;
+		return ofile;
 	}
 	
 	public static String renameFile(String sDirectory, String fileName) {
