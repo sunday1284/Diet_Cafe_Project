@@ -30,6 +30,7 @@
 		<td id="type">분류</td>
 		<td id="title">제목</td>
 		<td>조회수</td>
+		<td>게시일</td>
 	</tr>
 
 	<%
@@ -43,6 +44,7 @@
 		<td><%= notice.getNotice_type() %></td>
 		<td><%= notice.getNotice_title() %></td>
 		<td><%= notice.getNotice_view() %></td>
+		<td><%= notice.getNotice_day() %></td>
 	</tr>
 	<%
 			}

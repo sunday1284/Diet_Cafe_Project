@@ -68,60 +68,8 @@ document.getElementById("checkIdBtn").addEventListener("click", function() {
         }
     });
 });
- // 현재 날짜를 'mem_create' 필드에 설정하는 함수 
- window.onload = function() { 
-     var today = new Date(); 
-     var yyyy = today.getFullYear(); 
-     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-     var dd = String(today.getDate()).padStart(2, '0'); 
-     var formattedDate = yyyy + '-' + mm + '-' + dd; 
-     document.querySelector('input[name="mem_create"]').value = formattedDate;
- }
-    function validateForm() {
-        const tel = document.querySelector('input[name="mem_tel"]').value;
-        const telRegex = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
-        if (!telRegex.test(tel)) {
-            alert('전화번호 형식이 올바르지 않습니다. 예: 010-1234-5678');
-            return false;
-        }
-        return true;
-    }
-    
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var addr = '';
-                var extraAddr = '';
-
-                if (data.userSelectedType === 'R') {
-                    addr = data.roadAddress;
-                } else {
-                    addr = data.jibunAddress;
-                }
-
-                if(data.userSelectedType === 'R'){
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                }
-
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("mem_addr1").value = addr;
-                document.getElementById("mem_addr2").focus();
-            }
-        }).open();
-    }
 </script>
-
+<!--스크립트 분리  -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
  // 현재 날짜를 'mem_create' 필드에 설정하는 함수 

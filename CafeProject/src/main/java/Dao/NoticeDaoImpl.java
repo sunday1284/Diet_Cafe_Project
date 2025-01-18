@@ -49,7 +49,7 @@ public class NoticeDaoImpl implements INoticeDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("공지조회 실패");
+			System.out.println("(다오)공지조회 실패");
 		} finally {
 			if(session != null) session.close();
 		}

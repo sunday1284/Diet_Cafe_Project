@@ -1,5 +1,8 @@
 package ServiceImpl.Member;
 
+import java.util.List;
+import java.util.Map;
+
 import Dao.Member.IJoinLoginDao;
 import DaoImpl.Member.JoinLoginDaoImpl;
 import Service.Member.IJoinLoginService;
@@ -26,5 +29,14 @@ public class JoinLoginServiceImpl implements IJoinLoginService {
 	@Override
 	public int CheckId(String mem_id) {
 		return dao.CheckId(mem_id);
+	}
+	@Override
+	public MemVO getLoginMember(Map<String, String> map) {
+		return dao.getLoginMember(map);
+		
+	}
+	@Override
+	public List<MemVO> getAllMember(){
+		return dao.getAllMember();	
 	}
 }
