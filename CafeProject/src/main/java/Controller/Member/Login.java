@@ -43,12 +43,9 @@ public class Login extends HttpServlet {
             session.setAttribute("loginMember", loginMemberVO);
             
             //운영자 조건 확인 
-            if("admin".equals(loginMemberVO.getMem_id())
-            	&& "운영자".equals(loginMemberVO.getMem_name())
-            	&& "ADMIN".equals(loginMemberVO.getMem_grd())) {
-            	
+            if("ADMIN".equals(loginMemberVO.getMem_grd())) {          	
             	//운영자 페이지
-            	resp.sendRedirect(req.getContextPath() + "/view/JoinLogin/AdminBoard.jsp");
+            	resp.sendRedirect(req.getContextPath() + "/memList.do");
             	return;
             } else {
             	//운영자가 아닐때 

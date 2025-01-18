@@ -42,7 +42,11 @@
 				for(MemVO mem : memList ){
 			%>
 				<tr>
-					<td><%= mem.getMem_id()%></td>
+					<td>
+						<a href="<%=request.getContextPath()%>/memUpdate.do?mem_id=<%= mem.getMem_id() %>">
+							<%= mem.getMem_id()%>
+						</a>
+					</td>
 					<td><%= mem.getMem_pw() %></td>
 					<td><%= mem.getMem_name()%></td>
 					<td><%= mem.getMem_tel() %></td>

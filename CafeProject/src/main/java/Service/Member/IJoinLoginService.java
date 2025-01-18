@@ -30,4 +30,17 @@ public interface IJoinLoginService {
 	 * @return
 	 */
 	public List<MemVO> getAllMember();
+	/**
+	 * 회원 리스트 수정 -> 운영자일 경우 수정X
+	 * 
+	 * @param member
+	 * @return
+	 */
+	public int updateMember(Map<String, String> member);
+	/**
+	 * 회원 아이디를 클릭하면 회원 정보가 보임
+	 * @param memId
+	 * @return
+	 */
+	public MemVO getMemberById(String memId);
 }

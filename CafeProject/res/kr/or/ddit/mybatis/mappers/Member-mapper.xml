@@ -27,6 +27,22 @@
       	 	   MEM_ADDR1, MEM_ADDR2, MEM_CREATE, MEM_GRD 
        		   from member WHERE mem_grd != 'ADMIN'
 	</select>
-	
+	<select id="getMemberById" resultType="memVO" parameterType="String">
+		SELECT mem_id, mem_pw, mem_name, mem_tel, mem_addr1, mem_addr2
+		FROM member
+		WHERE mem_id = #{mem_id}
+	</select>
+	<!-- 회원 리스트 업데이트 -> 운영자일 경우 업데이트x -->
+	<update id="updateMember" parameterType="map">
+		UPDATE member
+    	SET 
+	        mem_pw = #{mem_pw},
+	        mem_name = #{mem_name},
+	        mem_tel = #{mem_tel},
+	        mem_addr1 = #{mem_addr1},
+	        mem_addr2 = #{mem_addr2}
+   	  WHERE mem_id = #{mem_id}
+      	AND mem_grd != 'ADMIN'
+	</update>
 
 </mapper>
