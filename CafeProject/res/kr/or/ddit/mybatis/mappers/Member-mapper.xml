@@ -3,51 +3,70 @@
 <mapper namespace="Member">
 	<!-- 회원가입 -->
 	<insert id="joinMember" parameterType="memVO">
-		insert into MEMBER(mem_id, mem_name, mem_pw, mem_bir, 
- 		mem_tel, mem_addr1, mem_addr2, mem_create)
- 		values(#{mem_id},#{mem_name},#{mem_pw},sysdate,
- 			   #{mem_tel},#{mem_addr1},#{mem_addr2},sysdate)
+		insert into MEMBER(mem_id,
+		mem_name, mem_pw, mem_bir,
+		mem_tel, mem_addr1, mem_addr2, mem_create)
+		values(#{mem_id},#{mem_name},#{mem_pw},sysdate,
+		#{mem_tel},#{mem_addr1},#{mem_addr2},sysdate)
 	</insert>
 	<!-- ID 중복 체크 -->
-    <select id="checkId" parameterType="string" resultType="int">
-        SELECT COUNT(*)
-        FROM MEMBER
-        WHERE mem_id = #{mem_id}
-    </select>
-    
-    <!-- 로그인 -->
-    <select id="getLoginMember" parameterType="memVO" resultType="memVO">
-	    SELECT * FROM MEMBER
-	     WHERE mem_id = #{mem_id} AND mem_pw = #{mem_pw}
+	<select id="checkId" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE mem_id = #{mem_id}
 	</select>
-	
+
+	<!-- 로그인 -->
+	<select id="getLoginMember" parameterType="memVO"
+		resultType="memVO">
+		SELECT * FROM MEMBER
+		WHERE mem_id = #{mem_id} AND mem_pw = #{mem_pw}
+	</select>
+
 	<!-- 회원 리스트 -> 운영자일 경우는 출력X -->
 	<select id="getAllMember" resultType="memVO">
-		select MEM_ID, MEM_NAME, MEM_PW, MEM_BIR, MEM_TEL,
-      	 	   MEM_ADDR1, MEM_ADDR2, MEM_CREATE, MEM_GRD 
-       		   from member WHERE mem_grd != 'ADMIN'
+		select MEM_ID, MEM_NAME,
+		MEM_PW, MEM_BIR, MEM_TEL,
+		MEM_ADDR1, MEM_ADDR2, MEM_CREATE, MEM_GRD
+		from member WHERE mem_grd != 'ADMIN'
 	</select>
-	<!--회원 자신의 정보 보기   -->
-	<select id="getMemberById" resultType="memVO" parameterType="String">
-		SELECT mem_id, mem_pw, mem_name, mem_tel, mem_addr1, mem_addr2
+	<!--회원 자신의 정보 보기 -->
+	<select id="getMemberById" resultType="memVO"
+		parameterType="String">
+		SELECT mem_id, mem_pw, mem_name, mem_tel, mem_addr1,
+		mem_addr2
 		FROM member
 		WHERE mem_id = #{mem_id}
 	</select>
 	<!-- 회원 리스트 업데이트 -> 운영자일 경우 업데이트x -->
 	<update id="updateMember" parameterType="map">
 		UPDATE member
-    	SET 
-	        mem_pw = #{mem_pw},
-	        mem_name = #{mem_name},
-	        mem_tel = #{mem_tel},
-	        mem_addr1 = #{mem_addr1},
-	        mem_addr2 = #{mem_addr2}
-   	  WHERE mem_id = #{mem_id}
-      	AND mem_grd != 'ADMIN'
+		SET
+		mem_pw = #{mem_pw},
+		mem_name = #{mem_name},
+		mem_tel = #{mem_tel},
+		mem_addr1 = #{mem_addr1},
+		mem_addr2 = #{mem_addr2}
+		WHERE mem_id = #{mem_id}
+		AND mem_grd != 'ADMIN'
 	</update>
-	<!-- 회원 삭제 -> 관리자일 때 회원 삭제랑 회원이 회원 탈퇴 기능-->
+	<!-- 회원 삭제 -->
 	<delete id="deleteMember" parameterType="String">
 		delete from member
-		where mem_id = #{mem_id}
+		where
+		mem_id = #{mem_id}
 	</delete>
+	
+	<!--운영자가 회원 블랙리스트 추가  -->
+	<update id="blacklistMember" parameterType="string">
+		UPDATE member SET is_blacklisted = 1 WHERE mem_id = #{memId}
+	</update>
+	<!--운영자가 회원 블랙리스트 해제  -->
+	<update id="unblacklistMember" parameterType="string">
+		UPDATE member SET is_blacklisted = 0 WHERE mem_id = #{memId}
+	</update>
+	<!--블랙 리스트 맴버 보여주기  -->
+	<select id="getBlacklistedMembers" resultType="memVO">
+    	SELECT * FROM member WHERE is_blacklisted = 1
+	</select>
 </mapper>

@@ -12,7 +12,7 @@ import ServiceImpl.Member.JoinLoginServiceImpl;
 
 
 /**
- * Id중복체크 서블릿 
+ * Id중복체크 서블릿 -> 비동기
  */
 @WebServlet("/CheckId.do")
 public class CheckId extends HttpServlet {

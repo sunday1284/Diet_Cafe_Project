@@ -51,6 +51,25 @@ public interface IJoinLoginDao {
 	 * @return
 	 */
 	public int deleteMember(String mem_id);
+	
+	/**
+	 * 운영자가 블랙리스트 추가 
+	 * @param memId
+	 * @return
+	 */
+	public int blacklistMember(String memId);
+	
+	/**
+	 * 운영자가 블랙리스트 해제
+	 * @param memId
+	 * @return
+	 */
+	public int unblacklistMember(String memId);
+
+	/**
+	 * 블랙리스트된 회원 정보 조회
+	 */
+	public List<MemVO> getBlacklistedMembers();
 
 	
 }

@@ -18,19 +18,25 @@ import jakarta.servlet.http.HttpSession;
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	req.setCharacterEncoding("utf-8");
+        req.setCharacterEncoding("utf-8");
+        
+        // 로그인 폼 페이지로 포워딩
+        req.getRequestDispatcher("/view/JoinLogin/LoginForm.jsp").forward(req, resp);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
 
         String userId = req.getParameter("mem_id");
         String userPw = req.getParameter("mem_pw");
         
         System.out.println("UserID: " + userId); // 디버깅 라인 
         System.out.println("UserPW: " + userPw); // 디버깅 라인
-        //MemVO에서 받아왔었는데 자꾸 오류나서 삽질 
-        //map으로 다오 서비스 바꿔주고 파라미터로 받고,
-        // 서블릿에서 put으로 입력한 값을 지정해줘야 로그인이 성공함!
+
         Map<String, String> map = new HashMap<>();
-	    map.put("mem_id", userId);
-	    map.put("mem_pw", userPw);
+        map.put("mem_id", userId);
+        map.put("mem_pw", userPw);
         IJoinLoginService service = JoinLoginServiceImpl.getInstance();
 
         MemVO loginMemberVO = service.getLoginMember(map);
@@ -44,25 +50,18 @@ public class Login extends HttpServlet {
             
             //운영자 조건 확인 
             if("ADMIN".equals(loginMemberVO.getMem_grd())) {          	
-            	//운영자 페이지
-            	resp.sendRedirect(req.getContextPath() + "/memList.do");
-            	return;
+                //운영자 페이지
+                resp.sendRedirect(req.getContextPath() + "/memList.do");
+                return;
             } else {
-            	//운영자가 아닐때 
-            	resp.sendRedirect(req.getContextPath() + "/memList.do");
-            	return;
-            	
+                //운영자가 아닐때 
+                resp.sendRedirect(req.getContextPath() + "/memList.do");
+                return;
             }
-        } 
-        // 로그인  실패 -> 리다이렉트
-        resp.sendRedirect(req.getContextPath() + "/view/JoinLogin/LoginForm.jsp");
-    }
-    
-    
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	//get으로 데이터를 요청한것을 post에다가 담아주고, jsp에서 post로 요청하면 
-    	//로그인 로그아웃 둘다 가능한 상태가 된다.
-    	doGet(req, resp);
+        } else {
+            // 로그인 실패 -> 리다이렉트 경로 확인
+            System.out.println("로그인 실패: 아이디 또는 비밀번호가 올바르지 않습니다."); // 디버깅 라인
+            resp.sendRedirect(req.getContextPath() + "/Login.do");
+        }
     }
 }

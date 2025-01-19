@@ -12,6 +12,9 @@ public class MemVO implements Serializable{
 	private String mem_addr2;
 	private String mem_create;
 	private String mem_grd;
+	private int is_blacklisted;
+	
+	
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -66,12 +69,19 @@ public class MemVO implements Serializable{
 	public void setMem_grd(String mem_grd) {
 		this.mem_grd = mem_grd;
 	}
+	public int getIs_blacklisted() {
+		return is_blacklisted;
+	}
+	public void setIs_blacklisted(int is_blacklisted) {
+		this.is_blacklisted = is_blacklisted;
+	}
 	@Override
 	public String toString() {
 		return "MemVO [mem_id=" + mem_id + ", mem_name=" + mem_name + ", mem_pw=" + mem_pw + ", mem_bir=" + mem_bir
 				+ ", mem_tel=" + mem_tel + ", mem_addr1=" + mem_addr1 + ", mem_addr2=" + mem_addr2 + ", mem_create="
-				+ mem_create + ", mem_grd=" + mem_grd + "]";
+				+ mem_create + ", mem_grd=" + mem_grd + ", is_blacklisted=" + is_blacklisted + "]";
 	}
+	
 	
 	
 	

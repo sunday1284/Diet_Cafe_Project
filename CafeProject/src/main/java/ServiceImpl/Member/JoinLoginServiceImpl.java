@@ -51,4 +51,16 @@ public class JoinLoginServiceImpl implements IJoinLoginService {
 	public int deleteMember(String mem_id) {
 		return dao.deleteMember(mem_id);
 	}
+	@Override
+	public int blacklistMember(String memId) {
+		return dao.blacklistMember(memId);
+	}
+	@Override
+	public int unblacklistMember(String memId) {
+		return dao.unblacklistMember(memId);
+	}
+	@Override
+    public List<MemVO> getBlacklistedMembers()	{
+		return dao.getBlacklistedMembers();
+	}
 }

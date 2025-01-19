@@ -168,5 +168,73 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		return cnt;
 		
 	}
+	
+	/**
+	 * 운영자가 블랙리스트 추가 
+	 * @param memId
+	 * @return
+	 */
+	@Override
+	public int blacklistMember(String memId) {
+		SqlSession session = null;
+		int cnt = 0;
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.update("Member.blacklistMember", memId);
+			if(cnt > 0)
+				session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (session != null)
+				session.close();
+		}
+		
+		return cnt;
+		
+	}
+	
+	/**
+	 * 운영자가 블랙리스트 해제
+	 */
+	@Override
+	public int unblacklistMember(String memId) {
+		SqlSession session = null;
+		int cnt = 0;
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.update("Member.unblacklistMember", memId);
+			if(cnt > 0)
+				session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (session != null)
+				session.close();
+		}
+		
+		return cnt;
+	}
+	
+	/**
+     * 블랙리스트된 회원 정보 조회
+     */
+    @Override
+    public List<MemVO> getBlacklistedMembers() {
+    	List<MemVO> list = null;
+    	SqlSession session = null;
+    	try {
+			session = MybatisUtil.getSqlSession();
+			list = session.selectList("Member.getBlacklistedMembers");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (session != null)
+				session.close();
+		}
+    	
+		return list;
+    	
+    }
 
 }

@@ -45,9 +45,29 @@ public interface IJoinLoginService {
 	public MemVO getMemberById(String memId);
 	
 	/**
-	 * 회원 삭제 ->관리자일때는 회원 블랙 리스트, 회원일때는 회원탈퇴기능
+	 * 회원 삭제
 	 * @param mem_id
 	 * @return
 	 */
 	public int deleteMember(String mem_id);
+	
+	/**
+	 * 운영자가 블랙리스트 추가 
+	 * @param memId
+	 * @return
+	 */
+	public int blacklistMember(String memId);
+	
+	/**
+	 * 운영자가 블랙리스트 해제
+	 * @param memId
+	 * @return
+	 */
+	public int unblacklistMember(String memId);
+	
+	/**
+	 * 운영자가 블랙리스트를 봄
+	 * @return
+	 */
+	public List<MemVO> getBlacklistedMembers();
 }
