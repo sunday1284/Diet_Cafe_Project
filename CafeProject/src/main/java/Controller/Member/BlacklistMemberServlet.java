@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+//운영자 -> 회원 블랙리스트 추가 
 @WebServlet("/blacklistMember.do")
 public class BlacklistMemberServlet extends HttpServlet{
 	

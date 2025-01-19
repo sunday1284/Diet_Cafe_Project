@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+//회원탈퇴 기능 운영자일 경우 블랙리스트를 등록하는 서블릿
 @WebServlet("/memDelete.do")
 public class MemDelete extends HttpServlet {
 
@@ -26,7 +27,7 @@ public class MemDelete extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		processRequest(req, resp);
 	}
-
+	
 	protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();

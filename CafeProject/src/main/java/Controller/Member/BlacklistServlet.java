@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+// 운영자가 추가한 블랙리스트 목록을 보여줌
 @WebServlet("/blacklistView.do")
 public class BlacklistServlet extends HttpServlet {
 	
