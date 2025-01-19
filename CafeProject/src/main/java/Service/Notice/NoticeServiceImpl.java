@@ -1,10 +1,10 @@
-package Service;
+package Service.Notice;
 
 import java.util.List;
 
-import Dao.NoticeDaoImpl;
-import DaoImpl.INoticeDao;
-import ServiceImpl.INoticeService;
+import Dao.Notice.NoticeDaoImpl;
+import DaoImpl.Notice.INoticeDao;
+import ServiceImpl.Notice.INoticeService;
 import VO.noticeVO;
 
 public class NoticeServiceImpl implements INoticeService{
@@ -35,7 +35,19 @@ public class NoticeServiceImpl implements INoticeService{
 		return dao.getAllNotice();
 	}
 
+	@Override
+	public noticeVO DetailNotice(String notice_no) {
+		// TODO Auto-generated method stub
+		return dao.DetailNotice(notice_no);
+	}
 
+	@Override
+	public int CountViewNotice(String notice_no) {
+		// TODO Auto-generated method stub
+		return dao.CountViewNotice(notice_no);
+	}
+
+	
 	
 	
 

@@ -3,8 +3,8 @@ package Controller.Notice;
 import java.io.IOException;
 import java.util.List;
 
-import Service.NoticeServiceImpl;
-import ServiceImpl.INoticeService;
+import Service.Notice.NoticeServiceImpl;
+import ServiceImpl.Notice.INoticeService;
 import VO.noticeVO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,17 +19,15 @@ public class NoticeListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		INoticeService service = NoticeServiceImpl.getInstance();
 		
-		String notice_no = req.getParameter("notice_no");
 		
 		List<noticeVO> noticeList = service.getAllNotice();
 		req.setAttribute("noticeList", noticeList);
 		
-		System.out.println("회원조회 서블릿:" + noticeList);
-		System.out.println("회원조회 notice_no:" + notice_no);
+		System.out.println("게시판조회 서블릿:" + noticeList);
 		
 		
 		
-		String path="/WEB-INF/Notice/getAllNotice.jsp";
+		String path="/WEB-INF/Notice/noticeList.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	
 	}

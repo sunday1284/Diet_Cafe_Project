@@ -5,12 +5,23 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="noticeInsert" parameterType="noticeVO">
-		insert into notice (notice_no,notice_title,notice_content,notice_type,ofile)
-          values(NOTICE_SEQ.NEXTVAL, #{notice_title},#{notice_content},#{notice_type},#{ofile})
+		insert into notice (notice_no,notice_title,notice_content,notice_type,ofile,sfile)
+          values(NOTICE_SEQ.NEXTVAL, #{notice_title},#{notice_content},#{notice_type},#{ofile},#{sfile})
 	</insert>
 	
+<!-- 	공지사항 목록조회 -->
 	<select id="getAllNotice" resultType="noticeVO">
-		select * from notice
+		select * from notice order by notice_no desc
 	</select>
+	
+<!-- 	공지사항 상세보기 조회 -->
+	<select id="DetailNotice" parameterType="String" resultType="noticeVO">
+		select * from notice where notice_no = #{notice_no}
+	</select>
+	
+<!-- 	공지사항 조회수 증가 -->
+	<update id="CountViewNotice" parameterType="String">
+		UPDATE notice set  notice_view = notice_view+1 where notice_no= #{notice_no}
+	</update>
 	
 </mapper>

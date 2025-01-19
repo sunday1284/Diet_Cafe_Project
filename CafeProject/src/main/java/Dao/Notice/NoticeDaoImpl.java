@@ -1,10 +1,10 @@
-package Dao;
+package Dao.Notice;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import DaoImpl.INoticeDao;
+import DaoImpl.Notice.INoticeDao;
 import Util.MybatisUtil;
 import VO.noticeVO;
 
@@ -56,6 +56,41 @@ public class NoticeDaoImpl implements INoticeDao {
 		
 		return noticeList;
 		
+	}
+
+	@Override
+	public noticeVO DetailNotice(String notice_no) {
+		SqlSession session = MybatisUtil.getSqlSession();
+		noticeVO detailNotice = null;
+		
+		try {
+			detailNotice = session.selectOne("Board.DetailNotice", notice_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("(다오)상세조회 실패");
+		}finally {
+			if(session != null) session.close();
+		}
+		
+		return detailNotice;
+	}
+
+	@Override
+	public int CountViewNotice(String notice_no) {
+		SqlSession session = MybatisUtil.getSqlSession();
+		int CountVieCnt = 0;
+		
+		try {
+			CountVieCnt = session.update("Board.CountViewNotice",notice_no);
+			if(CountVieCnt>0) session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("(다오)조회수 증가 실패");
+		} finally {
+			if(session != null) session.close();
+		}
+		
+		return CountVieCnt;
 	}
 
 	

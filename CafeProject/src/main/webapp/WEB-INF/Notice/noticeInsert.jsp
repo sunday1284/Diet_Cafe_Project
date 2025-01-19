@@ -29,8 +29,9 @@
    </h4>
 	
 	첨부파일 : <input type="file" name="ofile" value="파일" /> <br/>
-	<input type="submit" value="전송하기" />
+	<input type="submit" value="등록" />
 </form>
+
 
 
 </body>
