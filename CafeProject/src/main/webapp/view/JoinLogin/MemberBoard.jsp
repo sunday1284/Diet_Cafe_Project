@@ -42,7 +42,11 @@
 				for(MemVO mem : memList ){
 			%>
 				<tr>
-					<td><%= mem.getMem_id()%></td>
+					<td>
+						<a href="<%=request.getContextPath()%>/memUpdate.do?mem_id=<%= mem.getMem_id() %>">
+							<%= mem.getMem_id()%>
+						</a>
+					</td>
 					<td><%= mem.getMem_pw() %></td>
 					<td><%= mem.getMem_name()%></td>
 					<td><%= mem.getMem_tel() %></td>
@@ -50,6 +54,12 @@
 					<td><%= mem.getMem_addr2() %></td>
 					<td><%= mem.getMem_create() %></td>
 					<td><%= mem.getMem_grd() %></td>
+					<td>
+                        <form action="<%=request.getContextPath()%>/memDelete.do" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
+                            <input type="hidden" name="mem_id" value="<%= mem.getMem_id() %>">
+                            <input type="submit" value="삭제">
+                        </form>
+                    </td>
 				</tr>
 			<%
 				}

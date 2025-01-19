@@ -106,5 +106,67 @@ public class JoinLoginDaoImpl implements IJoinLoginDao {
 		return memList;
 
 	}
+	@Override
+	public MemVO getMemberById(String memId) {
+		SqlSession session = null;
+		MemVO memvo = null;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			memvo = session.selectOne("Member.getMemberById",memId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null)
+				session.close();
+		}
+		
+		return memvo;
+		
+	}
+	
+	@Override
+	public int updateMember(Map<String, String> member) {
+		SqlSession session = null;
+		int result = 0;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			result = session.update("Member.updateMember", member);
+			if(result>0)
+				session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null)
+				session.close();
+		}
+		
+		
+		return result;
+		
+	}
+	
+	@Override
+	public int deleteMember(String mem_id) {
+		SqlSession session = null;
+		int cnt = 0;
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.delete("Member.deleteMember", mem_id);
+			if(cnt>0)
+				session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 삭제 실패 오류~");
+		}finally {
+			if(session != null)
+				session.close();
+		}
+		
+		return cnt;
+		
+	}
 
 }

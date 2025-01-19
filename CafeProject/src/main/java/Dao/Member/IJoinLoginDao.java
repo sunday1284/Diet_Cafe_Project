@@ -30,6 +30,27 @@ public interface IJoinLoginDao {
 	 * @return
 	 */
 	public List<MemVO> getAllMember();
+	
+	/**
+	 * 회원 리스트 업데이트 -> 운영자일 경우 수정x
+	 * @param member
+	 * @return
+	 */
+	public int updateMember(Map<String, String> member);
+	
+	/**
+	 * 회원 리스트 보기 -> 업데이트에서
+	 * @param memId
+	 * @return
+	 */
+	public MemVO getMemberById(String memId);
+
+	/**
+	 * 회원 삭제
+	 * @param mem_id
+	 * @return
+	 */
+	public int deleteMember(String mem_id);
 
 	
 }
