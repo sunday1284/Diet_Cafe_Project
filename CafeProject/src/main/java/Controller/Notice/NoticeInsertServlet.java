@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.core.util.RequestPayload;
 
-import Service.NoticeServiceImpl;
-import ServiceImpl.INoticeService;
+import Service.Notice.NoticeServiceImpl;
+import ServiceImpl.Notice.INoticeService;
 import VO.noticeVO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -24,7 +24,7 @@ public class NoticeInsertServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path ="/WEB-INF/Notice/InsertNotice.jsp";
+		String path ="/WEB-INF/Notice/noticeInsert.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 	
@@ -44,6 +44,7 @@ public class NoticeInsertServlet extends HttpServlet {
 			String sfile = FileUtil.renameFile(savefile, ofile);
 			System.out.println("sfile 값확인 ==" + sfile);
 			
+			
 			insertMyFile(req,ofile,sfile);
 			
 			resp.sendRedirect(req.getContextPath() + path);
@@ -52,25 +53,32 @@ public class NoticeInsertServlet extends HttpServlet {
 			e.printStackTrace();
 			req.setAttribute("errorMessage", "파일 업로드 오류");
 			req.getRequestDispatcher(path).forward(req, resp);
+			
 		}
 		
 	}
 		private void insertMyFile(HttpServletRequest req, String ofile, String sfile) {
+			INoticeService service = NoticeServiceImpl.getInstance();
+			noticeVO noticeVo = new noticeVO();
+			
 			String notice_title = req.getParameter("notice_title");
 			String notice_content = req.getParameter("notice_content");
 			String notice_type = req.getParameter("notice_type");
 			
-			noticeVO noticeVo = new noticeVO();
-			noticeVo.setNotice_title(notice_title);
-			noticeVo.setNotice_content(notice_content);
-			noticeVo.setNotice_type(notice_type);
-			noticeVo.setOfile(ofile); //원본파일저장 (흰둥이)
-			noticeVo.setSfile(sfile);
-			
-			INoticeService service = NoticeServiceImpl.getInstance();
+			if(ofile ==null || ofile.isEmpty()) {
+				noticeVo.setNotice_title(notice_title);
+				noticeVo.setNotice_content(notice_content);
+				noticeVo.setNotice_type(notice_type);
+			} else {
+				noticeVo.setNotice_title(notice_title);
+				noticeVo.setNotice_content(notice_content);
+				noticeVo.setNotice_type(notice_type);
+				noticeVo.setOfile(ofile); //원본파일저장 (흰둥이)
+				noticeVo.setSfile(sfile);
+				
+			}
 			System.out.println(noticeVo);
 			service.insertNotice(noticeVo);
-			
 			
 	}
 }

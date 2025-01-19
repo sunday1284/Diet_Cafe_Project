@@ -42,7 +42,10 @@
 	<tr>
 		<td><%= notice.getNotice_no() %></td>
 		<td><%= notice.getNotice_type() %></td>
-		<td><%= notice.getNotice_title() %></td>
+			<td>
+				<a href="<%=request.getContextPath()%>/detailNotice.do?notice_no=<%=notice.getNotice_no()%>">
+						 <%=notice.getNotice_title() %></a>
+			</td>
 		<td><%= notice.getNotice_view() %></td>
 		<td><%= notice.getNotice_day() %></td>
 	</tr>
@@ -57,6 +60,9 @@
 		}
 	%>
 </table>
+	<a href="<%=request.getContextPath() %>/noticeInsert.do">
+		<button>글쓰기</button>
+	</a>
 
 </body>
 </html>
