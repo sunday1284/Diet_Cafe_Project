@@ -45,7 +45,10 @@
             <th>첨부파일</th>
             <td>
                 <% if (notice.getSfile() != null) { %>
-                    <a href="/Upload/<%= notice.getSfile() %>" download><%= notice.getOfile() %></a>
+<%--                     <a href="/Upload/<%= notice.getSfile() %>" download><%= notice.getOfile() %></a> --%>
+		  <a href="<%=request.getContextPath()%>/downloadFile.do?sfile=<%= notice.getSfile() %>&ofile=<%= notice.getOfile() %>">
+            <%= notice.getOfile() %>
+        </a>
                 <% } else { %>
                     첨부파일 없음
                 <% } %>

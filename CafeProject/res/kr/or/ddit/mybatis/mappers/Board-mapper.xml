@@ -11,7 +11,7 @@
 	
 <!-- 	공지사항 목록조회 -->
 	<select id="getAllNotice" resultType="noticeVO">
-		select * from notice
+		select * from notice order by notice_no desc
 	</select>
 	
 <!-- 	공지사항 상세보기 조회 -->

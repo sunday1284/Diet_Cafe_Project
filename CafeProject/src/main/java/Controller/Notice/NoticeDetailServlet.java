@@ -30,16 +30,13 @@ public class NoticeDetailServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() +"/noticeList.do");
             System.out.println("여기들어오나..?");
             return;
+        } else {
+        	//notice_no 있으면 조회수 증가 
+        	service.CountViewNotice(notice_no);
         }
-        // 서비스 객체 가져오기
 
-        // notice_no를 기반으로 공지사항 상세 조회
-//        noticeVO detailNotice = (noticeVO) service.DetailNotice(notice_no);
         noticeVO detailNotice = service.DetailNotice(notice_no); 
         
-//        noticeVO detailNotice = new noticeVO();
-//        detailNotice.setNotice_no(notice_no);
-//        detailNotice = service.DetailNotice(notice_no);
         System.out.println("디테일서블릿(VO확인) detailNotice : " + detailNotice);
 
         // 조회 결과를 JSP에 전달
