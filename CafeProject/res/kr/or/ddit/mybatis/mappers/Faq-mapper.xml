@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Faq">
+
+    <!-- FAQ 추가 -->
+    <insert id="insertFaq" parameterType="FaqVO">
+        INSERT INTO faq (faq_title, faq_content, manager_no)
+        VALUES (#{faq_title}, #{faq_content}, #{manger_no})
+    </insert>
+
+    <!-- FAQ 삭제 -->
+    <delete id="deleteFaq" parameterType="int">
+        DELETE FROM faq WHERE faq_no = #{faq_no}
+    </delete>
+
+    <!-- FAQ 수정 -->
+    <update id="updateFaq" parameterType="FaqVO">
+        UPDATE faq
+        SET faq_title = #{faq_title}, faq_content = #{faq_content}, manager_no = #{manger_no}
+        WHERE faq_no = #{faq_no}
+    </update>
+
+    <!-- FAQ 전체 조회 -->
+    <select id="selectAllFaq" resultType="FaqVO">
+        SELECT faq_no, faq_title, faq_content, manager_no, reg_date
+        FROM faq
+        ORDER BY faq_no DESC
+    </select>
+
+    <!-- 특정 FAQ 조회 -->
+    <select id="selectFaq" parameterType="int" resultType="FaqVO">
+        SELECT faq_no, faq_title, faq_content, manager_no, reg_date
+        FROM faq
+        WHERE faq_no = #{faq_no}
+    </select>
+</mapper>

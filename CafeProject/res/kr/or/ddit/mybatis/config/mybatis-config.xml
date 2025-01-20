@@ -16,6 +16,7 @@
 		<typeAlias type="VO.noticeVO" alias="noticeVO"/>
 		<typeAlias type="VO.MemVO" alias="memVO"/>
 		<typeAlias type="VO.FoodVO" alias="foodVO"/>
+		<typeAlias type="VO.FaqVO" alias="faqVO"/>
 	</typeAliases>
 	
 	<environments default="oracleDB">
@@ -34,5 +35,6 @@
 			<mapper resource="kr/or/ddit/mybatis/mappers/Board-mapper.xml"/>
 			<mapper resource="kr/or/ddit/mybatis/mappers/Member-mapper.xml"/>
 			<mapper resource="kr/or/ddit/mybatis/mappers/Food-mapper.xml"/>
+			<mapper resource="kr/or/ddit/mybatis/mappers/Faq-mapper.xml"/>
 		</mappers>
 </configuration>

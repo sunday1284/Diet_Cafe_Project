@@ -18,5 +18,8 @@ public interface IFaqDao {
 	public List<FaqVO> selectAllFaq(FaqVO FaqVO);
 	
 	// 게시글 조회
-	public List<FaqVO> selectFaq(FaqVO FaqVO);
+	public FaqVO selectFaq(FaqVO faqVO);
+
+
+
 }
